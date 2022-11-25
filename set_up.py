@@ -1,6 +1,6 @@
 import subprocess
 
-# 获取基色设备
+# 获取计算设备
 temp = -1
 while temp not in ['0', '11.7', '11.6', '11.2', '11.1', '10.2', '10.1']:
     temp = input("输入你的计算设备\n CPU: 0\n GPU: 你的CUDA版本 可选([11.7, 11.6, 11.2, 11.1, 10.2, 10.1]) \n")
@@ -25,9 +25,9 @@ result = subprocess.run(command, shell=True)
 print('\n', result)
 
 torch = {
-    '0': 'conda install -y pytorch torchvision torchaudio cpuonly -c pytorch',
-    '11.7': 'conda install -y pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia',
-    '11.6': 'conda install -y pytorch torchvision torchaudio pytorch-cuda=11.6 -c pytorch -c nvidia',
+    '0': 'pip3 install torch torchvision torchaudio',
+    '11.7': 'pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu117',
+    '11.6': 'pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116',
 }
 
 command = torch[temp]
