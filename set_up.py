@@ -3,7 +3,9 @@ import subprocess
 # 获取计算设备
 temp = -1
 while temp not in ['0', '11.7', '11.6', '11.2', '11.1', '10.2', '10.1']:
-    temp = input("输入你的计算设备\n CPU: 0\n GPU: 你的CUDA版本 可选([11.7, 11.6, 11.2, 11.1, 10.2, 10.1]) \n")
+    temp = input(
+        "输入你的计算设备\n CPU: 0\n GPU: 你的CUDA版本 可选([11.7, 11.6, 11.2, 11.1, 10.2, 10.1]) \n"
+    )
 
 # 安装部分依赖
 command = 'pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple'
@@ -18,7 +20,7 @@ paddlepaddle = {
     '11.2': 'python -m pip install paddlepaddle-gpu==2.3.2.post112 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html',
     '11.1': 'python -m pip install paddlepaddle-gpu==2.3.2.post111 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html',
     '10.2': 'python -m pip install paddlepaddle-gpu==2.3.2 -i https://pypi.tuna.tsinghua.edu.cn/simple',
-    '10.1': 'python -m pip install paddlepaddle-gpu==2.3.2.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html'
+    '10.1': 'python -m pip install paddlepaddle-gpu==2.3.2.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html',
 }
 command = paddlepaddle[temp]
 result = subprocess.run(command, shell=True)
@@ -33,6 +35,7 @@ torch = {
 command = torch[temp]
 result = subprocess.run(command, shell=True)
 print('\n', result)
+
 
 class bcolors:
     HEADER = '\033[95m'
@@ -50,5 +53,3 @@ if result.returncode == 0:
     print(f"{bcolors.OKGREEN}{bcolors.BOLD} \nInstall Successfully {bcolors.ENDC}")
 else:
     print(f"{bcolors.FAIL}{bcolors.BOLD} \n呜呜呜，没有装上，好可怜 {bcolors.ENDC}")
-
-
